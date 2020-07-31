@@ -1,0 +1,39 @@
+version: '3.7'
+
+networks:
+  potternetwork:
+
+x-service: &service
+  networks:
+    - potternetwork
+
+services:
+
+  app:
+    <<: *service
+    build:
+      context: .
+    ports:
+      - 9090:9090
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      APP_SERVER_PORT: 9090
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/dextra
+      SPRING_DATASOURCE_USERNAME: ${POST_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POST_PASS}
+
+  postgres:
+    <<: *service
+    image: library/postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: ${POST_PASS}
+
+  redis:
+    <<: *service
+    image: library/redis:latest
+    ports:
+      - 6379:6379
