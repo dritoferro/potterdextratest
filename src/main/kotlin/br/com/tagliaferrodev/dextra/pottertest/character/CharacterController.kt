@@ -1,4 +1,4 @@
-package br.com.tagliaferrodev.dextra.pottertest.controller
+package br.com.tagliaferrodev.dextra.pottertest.character
 
 import br.com.tagliaferrodev.dextra.pottertest.integration.PotterClient
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,6 +11,6 @@ class CharacterController(val service: PotterClient) {
 
     @GetMapping("teste")
     fun teste() {
-        service.getData()
+        service.updateCache()
     }
 }
