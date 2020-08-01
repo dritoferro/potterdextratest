@@ -1,7 +1,7 @@
 package br.com.tagliaferrodev.dextra.pottertest.entity
 
 data class House(
-        val id: String? = null,
+        val _id: String? = null,
         val name: String? = null,
         val mascot: String? = null,
         val headOfHouse: String? = null,
