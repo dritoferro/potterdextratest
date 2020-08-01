@@ -1,6 +1,5 @@
-package br.com.tagliaferrodev.dextra.pottertest.entity
+package br.com.tagliaferrodev.dextra.pottertest.character.domain
 
-import br.com.tagliaferrodev.dextra.pottertest.enum.Role
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
