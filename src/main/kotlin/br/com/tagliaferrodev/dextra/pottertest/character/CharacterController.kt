@@ -1,16 +1,19 @@
 package br.com.tagliaferrodev.dextra.pottertest.character
 
-import br.com.tagliaferrodev.dextra.pottertest.integration.PotterClient
-import org.springframework.web.bind.annotation.GetMapping
+import br.com.tagliaferrodev.dextra.pottertest.character.domain.Character
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("characters")
-class CharacterController(val service: PotterClient) {
+class CharacterController(val service: CharacterService) {
 
-    @GetMapping("teste")
-    fun teste() {
-        service.updateCache()
+    @PostMapping
+    fun add(@RequestBody @Valid character: Character): ResponseEntity<Character> {
+        return ResponseEntity.ok(service.save(character))
     }
 }
