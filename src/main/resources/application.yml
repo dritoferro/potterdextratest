@@ -16,3 +16,14 @@ integration:
   path-houses: /houses
   key: $2a$10$gdV39d9l1qH5iQ10IBBf5.2uj10kqKm/mcnKtguWlJhNRbDVWwlJq
 
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
