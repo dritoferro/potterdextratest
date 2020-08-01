@@ -14,7 +14,7 @@ spring:
 integration:
   base-url: https://www.potterapi.com/v1
   path-houses: /houses
-  key: $2a$10$gdV39d9l1qH5iQ10IBBf5.2uj10kqKm/mcnKtguWlJhNRbDVWwlJq
+  key: ${POTTER_KEY}
 
 feign:
   hystrix:

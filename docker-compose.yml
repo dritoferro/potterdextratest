@@ -24,6 +24,9 @@ services:
       SPRING_DATASOURCE_USERNAME: ${POST_USER}
       SPRING_DATASOURCE_PASSWORD: ${POST_PASS}
       SPRING_REDIS_HOST: redis
+      INTEGRATION_BASE-URL: https://www.potterapi.com/v1
+      INTEGRATION_PATH-HOUSES: /houses
+      INTEGRATION_KEY: ${POTTER_KEY}
 
   postgres:
     <<: *service
