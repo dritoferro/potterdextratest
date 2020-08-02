@@ -29,7 +29,8 @@ class CharacterService(private val repository: CharacterRepository,
         return CharacterDTO(character, house)
     }
 
-    private fun simpleFind(id: String): Character {
+    @Transactional
+    fun simpleFind(id: String): Character {
         return repository.findById(UUID.fromString(id)).orElseThrow { throw EntityNotFoundException("Character with id: $id not found.") }
     }
 
@@ -50,6 +51,7 @@ class CharacterService(private val repository: CharacterRepository,
         }
     }
 
+    @Transactional
     fun update(character: Character): Character {
         if (character.id == null) {
             throw IllegalArgumentException("Cannot update character without id")
@@ -59,6 +61,7 @@ class CharacterService(private val repository: CharacterRepository,
         return save(character)
     }
 
+    @Transactional
     fun deleteById(id: String) {
         simpleFind(id)
 
