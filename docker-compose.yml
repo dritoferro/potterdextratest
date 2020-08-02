@@ -34,7 +34,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ~/pottertest/postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: ${POST_PASS}
       POSTGRES_DB: ${POST_DB}
