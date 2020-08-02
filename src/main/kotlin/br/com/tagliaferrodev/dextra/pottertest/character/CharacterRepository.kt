@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface CharacterRepository : JpaRepository<Character, UUID>
+interface CharacterRepository : JpaRepository<Character, UUID> {
+
+    fun findAllByHouse(house: String): Optional<List<Character>>
+
+    fun findAllByNameContaining(name: String): Optional<List<Character>>
+}
