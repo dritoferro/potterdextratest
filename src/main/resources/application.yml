@@ -1,5 +1,5 @@
 server:
-  port: ${app.server.port:7070}
+  port: ${app.server.port:8080}
   servlet:
     context-path: /api/v1
   error:
@@ -10,3 +10,20 @@ spring:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+integration:
+  base-url: https://www.potterapi.com/v1
+  path-houses: /houses
+  key: ${POTTER_KEY}
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
