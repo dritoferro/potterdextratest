@@ -18,10 +18,12 @@ import javax.persistence.EntityNotFoundException
 @ExtendWith(MockitoExtension::class)
 class CharacterTest {
 
+    private val school = "Hogwarts School of Witchcraft and Wizardry"
+
     private val character = Character(
             name = "Test",
             house = "5a05e2b252f721a3cf2ea33f",
-            school = "Hogwarts School of Witchcraft and Wizardry",
+            school = school,
             patronus = "owl"
     )
 
@@ -29,29 +31,29 @@ class CharacterTest {
             Character(
                     name = "João",
                     house = "5a05e2b252f721a3cf2ea33f",
-                    school = "Hogwarts School of Witchcraft and Wizardry",
+                    school = school,
                     patronus = "owl"
             ),
             Character(
                     name = "Test 2",
                     house = "5a05e2b252f721a3cf2ea33f",
-                    school = "Hogwarts School of Witchcraft and Wizardry"
+                    school = school
             ),
             Character(
                     name = "Joana",
                     house = "5a05dc8cd45bd0a11bd5e071",
-                    school = "Hogwarts School of Witchcraft and Wizardry",
+                    school = school,
                     patronus = "cow"
             ),
             Character(
                     name = "Joca",
                     house = "5a05e2b252f721a3cf2ea33f",
-                    school = "Hogwarts School of Witchcraft and Wizardry"
+                    school = school
             ),
             Character(
                     name = "Test 5",
                     house = "5a05dc8cd45bd0a11bd5e071",
-                    school = "Hogwarts School of Witchcraft and Wizardry"
+                    school = school
             )
     )
 
