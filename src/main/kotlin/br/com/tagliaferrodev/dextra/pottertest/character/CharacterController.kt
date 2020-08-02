@@ -27,4 +27,11 @@ class CharacterController(val service: CharacterService) {
                                  @RequestParam("house") house: String?): ResponseEntity<List<CharactersDTO>> {
         return ResponseEntity.ok(service.findByAttributes(name, house))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteCharacter(@PathVariable id: String): ResponseEntity<Any> {
+        service.deleteById(id)
+
+        return ResponseEntity(HttpStatus.NO_CONTENT)
+    }
 }

@@ -5,6 +5,7 @@ import br.com.tagliaferrodev.dextra.pottertest.character.domain.CharacterDTO
 import br.com.tagliaferrodev.dextra.pottertest.character.domain.CharactersDTO
 import br.com.tagliaferrodev.dextra.pottertest.integration.PotterClient
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 import javax.persistence.EntityNotFoundException
 
@@ -12,20 +13,27 @@ import javax.persistence.EntityNotFoundException
 class CharacterService(private val repository: CharacterRepository,
                        private val partner: PotterClient) {
 
+    @Transactional
     fun save(character: Character): Character {
         partner.findByHouseId(character.house!!)
 
         return repository.save(character)
     }
 
+    @Transactional
     fun findById(id: String): CharacterDTO {
-        val character = repository.findById(UUID.fromString(id)).orElseThrow { throw EntityNotFoundException("Character with id: $id not found.") }
+        val character = simpleFind(id)
 
         val house = partner.findByHouseId(character.house!!)
 
         return CharacterDTO(character, house)
     }
 
+    private fun simpleFind(id: String): Character {
+        return repository.findById(UUID.fromString(id)).orElseThrow { throw EntityNotFoundException("Character with id: $id not found.") }
+    }
+
+    @Transactional
     fun findByAttributes(name: String?, houseId: String?): List<CharactersDTO> {
         val characters = if (!name.isNullOrBlank()) {
             repository.findAllByNameContaining(name).orElseThrow { throw EntityNotFoundException("Cannot find any character containing this name: $name") }
@@ -40,5 +48,11 @@ class CharacterService(private val repository: CharacterRepository,
 
             CharactersDTO(houseData, characters)
         }
+    }
+
+    fun deleteById(id: String) {
+        simpleFind(id)
+
+        repository.deleteById(UUID.fromString(id))
     }
 }
