@@ -160,6 +160,31 @@ class CharacterTest {
     }
 
     @Test
+    fun updateCharacter() {
+        val id = UUID.randomUUID()
+        `when`(repository.findById(id)).thenReturn(Optional.of(character))
+        `when`(partner.findByHouseId(character.house!!)).thenReturn(gryffindor)
+
+        val name = "Updated Character"
+        val update = character.copy(id = id, name = name)
+
+        `when`(repository.save(update)).thenReturn(update)
+
+        val result = service.update(update)
+
+        assertEquals(name, result.name)
+
+        verify(repository, times(1)).save(update)
+    }
+
+    @Test
+    fun updateCharacterWithoutIdThrowException() {
+        assertThrows<IllegalArgumentException> {
+            service.update(character)
+        }
+    }
+
+    @Test
     fun deleteById() {
         val id = UUID.randomUUID()
         `when`(repository.findById(id)).thenReturn(Optional.of(character))
