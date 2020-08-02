@@ -158,4 +158,15 @@ class CharacterTest {
         assertEquals(2, charactersFromGryffindor?.size)
         assertEquals(1, charactersFromSlytherin?.size)
     }
+
+    @Test
+    fun deleteById() {
+        val id = UUID.randomUUID()
+        `when`(repository.findById(id)).thenReturn(Optional.of(character))
+        doNothing().`when`(repository).deleteById(id)
+
+        service.deleteById(id.toString())
+
+        verify(repository, times(1)).deleteById(id)
+    }
 }
