@@ -28,6 +28,11 @@ class CharacterController(val service: CharacterService) {
         return ResponseEntity.ok(service.findByAttributes(name, house))
     }
 
+    @PutMapping
+    fun updateCharacter(@RequestBody @Valid character: Character): ResponseEntity<Character> {
+        return ResponseEntity.ok(service.update(character))
+    }
+
     @DeleteMapping("{id}")
     fun deleteCharacter(@PathVariable id: String): ResponseEntity<Any> {
         service.deleteById(id)

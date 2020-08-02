@@ -50,6 +50,15 @@ class CharacterService(private val repository: CharacterRepository,
         }
     }
 
+    fun update(character: Character): Character {
+        if (character.id == null) {
+            throw IllegalArgumentException("Cannot update character without id")
+        }
+        simpleFind(character.id.toString())
+
+        return save(character)
+    }
+
     fun deleteById(id: String) {
         simpleFind(id)
 
