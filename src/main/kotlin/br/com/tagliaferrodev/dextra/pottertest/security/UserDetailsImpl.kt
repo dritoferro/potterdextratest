@@ -19,9 +19,15 @@ class UserDetailsImpl(
 
     var tokenExpiration: Long = 0
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return mutableListOf(SimpleGrantedAuthority(UserRoles.ADMIN.name), SimpleGrantedAuthority(UserRoles.USER.name))
-    }
+    @JsonIgnore
+    private val autoridades: MutableCollection<out GrantedAuthority> =
+            if (email?.contains("admin")!!) {
+                UserRoles.values().map { SimpleGrantedAuthority(it.name) }.toMutableList()
+            } else {
+                mutableListOf(SimpleGrantedAuthority(UserRoles.USER.name))
+            }
+
+    override fun getAuthorities() = autoridades
 
     override fun isEnabled() = true
 
