@@ -8,7 +8,8 @@
 ***
 
 A url de produção atualmente é esta: https://potter-dextratest.herokuapp.com/api/v1
- 
+
+Observação: A resposta para a primeira request pode demorar um pouco mais no ambiente de produção, pois a infra é "on-demand".  
 ***
 #### Install:
 Será necessário ter uma chave de acesso deste parceiro: [Harry Potter API](https://www.potterapi.com/) 
