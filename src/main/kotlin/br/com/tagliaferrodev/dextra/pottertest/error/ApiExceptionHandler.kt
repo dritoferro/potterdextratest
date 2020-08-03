@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
+import org.springframework.security.access.AccessDeniedException
 import org.springframework.validation.FieldError
 import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -51,6 +52,13 @@ class ApiExceptionHandler : ResponseEntityExceptionHandler() {
     @ExceptionHandler(DataIntegrityViolationException::class)
     fun handleDataIntegrityViolation(ex: DataIntegrityViolationException): ResponseEntity<ApiError> {
         val error = ApiError(status = HttpStatus.BAD_REQUEST, message = "Houve algum erro na camada de dados", debugMessage = ex.cause?.cause?.message
+                ?: ex.message)
+        return sendResponse(error)
+    }
+
+    @ExceptionHandler(AccessDeniedException::class)
+    fun handleAccessDeniedException(ex: AccessDeniedException): ResponseEntity<ApiError> {
+        val error = ApiError(status = HttpStatus.UNAUTHORIZED, message = "Você não tem acesso para realizar esta operação", debugMessage = ex.cause?.cause?.message
                 ?: ex.message)
         return sendResponse(error)
     }

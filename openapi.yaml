@@ -87,6 +87,8 @@ paths:
           name: "data"
           schema:
             $ref: '#/definitions/Character'
+      security:
+        - Bearer: []
       responses:
         200:
           description: OK
@@ -108,6 +110,8 @@ paths:
           name: "id"
           type: "string"
           description: "Id of the character"
+      security:
+        - Bearer: []
       responses:
         200:
           description: OK
@@ -126,6 +130,8 @@ paths:
           name: "id"
           type: "string"
           description: "Id of the character"
+      security:
+        - Bearer: []
       responses:
         204:
           description: NO_CONTENT
@@ -143,6 +149,8 @@ paths:
           name: "id"
           type: "string"
           description: "Id of the house"
+      security:
+        - Bearer: []
       responses:
         200:
           description: OK
@@ -154,6 +162,8 @@ paths:
       tags:
         - "Houses"
       summary: "Update all cached houses"
+      security:
+        - Bearer: []
       responses:
         200:
           description: OK
@@ -163,13 +173,12 @@ paths:
               sucess:
                 type: "boolean"
 
-
   /users:
     post:
       tags:
         - "User"
       summary: "Create user"
-      operationId: "store"
+      operationId: "addUser"
       consumes:
         - "application/json"
       produces:
@@ -185,19 +194,19 @@ paths:
         201:
           description: "User created sucessfully"
           schema:
-            $ref: "#/definitions/User"
-
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                example: "Usuário criado com sucesso!"
         400:
-          description: "This user already exists"
-
-        500:
-          description: "Creating user operation failed"
+          description: "Some error occurred"
 
   /login:
     post:
       tags:
         - "User"
-      summary: "Login user reserved for third party APIs"
+      summary: "User login to get JWT Token"
       operationId: "login"
       consumes:
         - "application/json"
@@ -214,12 +223,8 @@ paths:
           description: "successful login"
           schema:
             $ref: "#/definitions/LoginSuccessful"
-
         401:
           description: "User or Password does not match"
-
-        500:
-          description: "Login operation failed"
 
 securityDefinitions:
   Bearer:
@@ -293,17 +298,15 @@ definitions:
   User:
     type: "object"
     properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
+      nome:
         type: "string"
       email:
         type: "string"
-      password:
+      senha:
         type: "string"
     xml:
       name: "User"
+
 
   LoginObject:
     type: "object"
@@ -316,10 +319,16 @@ definitions:
   LoginSuccessful:
     type: "object"
     properties:
-      message:
+      id:
+        type: "string"
+      nome:
+        type: "string"
+      email:
         type: "string"
       token:
         type: "string"
+      tokenExpiration:
+        type: "number"
 
   SingleResult:
     type: "object"
