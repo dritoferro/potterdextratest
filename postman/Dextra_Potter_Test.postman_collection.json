@@ -1,0 +1,189 @@
+{
+  "info": {
+    "_postman_id": "bac2a4d2-1ddf-471e-85fb-a31b488c894c",
+    "name": "Dextra Potter Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Houses",
+      "item": [
+        {
+          "name": "Update Cached Houses",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}/api/v1/houses/update-all",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "houses",
+                "update-all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get House By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}/api/v1/houses/5a05e2b252f721a3cf2ea33f",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "houses",
+                "5a05e2b252f721a3cf2ea33f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Characters",
+      "item": [
+        {
+          "name": "Create Character",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test\",\n    \"role\": \"STUDENT\",\n    \"house\": \"5a05e2b252f721a3cf2ea33f\",\n    \"patronus\": \"owl\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{prod}}/api/v1/characters",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "characters"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Characters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}/api/v1/characters",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "characters"
+              ],
+              "query": [
+                {
+                  "key": "house",
+                  "value": "5a05e2b252f721a3cf2ea33f",
+                  "disabled": true
+                },
+                {
+                  "key": "name",
+                  "value": "Tes",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Character by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}/api/v1/characters/e7f0dd75-a042-44ee-9cc1-6e4775b5b1cc",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "characters",
+                "e7f0dd75-a042-44ee-9cc1-6e4775b5b1cc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Character",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"e7f0dd75-a042-44ee-9cc1-6e4775b5b1cc\",\n    \"name\": \"Test Update\",\n    \"role\": \"STUDENT\",\n    \"school\": \"Hogwarts School of Witchcraft and Wizardry\",\n    \"house\": \"5a05e2b252f721a3cf2ea33f\",\n    \"patronus\": \"owl\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{prod}}/api/v1/characters",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "characters"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Character by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{prod}}/api/v1/characters/e7f0dd75-a042-44ee-9cc1-6e4775b5b1cc",
+              "host": [
+                "{{prod}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "characters",
+                "e7f0dd75-a042-44ee-9cc1-6e4775b5b1cc"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
