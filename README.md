@@ -8,7 +8,8 @@
 ***
 
 A url de produção atualmente é esta: https://potter-dextratest.herokuapp.com/api/v1
- 
+
+Observação: A resposta para a primeira request pode demorar um pouco mais no ambiente de produção, pois a infra é "on-demand".  
 ***
 #### Install:
 Será necessário ter uma chave de acesso deste parceiro: [Harry Potter API](https://www.potterapi.com/) 
@@ -45,6 +46,14 @@ Para facilitar em alguns passos, está na pasta do projeto o script `marauders-m
     * Pull Requests
 * Mockito
 
-O Redis foi implementado com o intuito de servir como cache para as "houses", desta forma evitando consultar o parceiro a todo momento. Este cache possui uma validade de 1 dia e a informação é renovada quando uma nova requisição for feita para uma determinada "house". 
+***
+
+O Redis foi implementado com o intuito de servir como cache para as "houses", desta forma evitando consultar o parceiro a todo momento. Este cache possui uma validade de 1 dia e a informação é renovada quando uma nova requisição for feita para uma determinada "house".
+
+***
+
+No endpoint de atualização do cache das "houses" é necessário que o usuário tenha nível ADMIN e para simular tal comportamento, basta criar um usuário que possua "admin" no campo email, exemplo: "teste-admin@email.com". 
+
+***
 
 Devido a detalhes técnicos, a documentação não está disponível no ambiente de produção, no entanto, basta executar o docker-compose que a mesma poderá ser acessada pela url: http://localhost:9595/api/swagger
