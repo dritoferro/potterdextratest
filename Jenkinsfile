@@ -24,6 +24,7 @@ pipeline {
       }
       steps {
         echo 'Pushing image to Docker Hub'
+        sh 'docker login docker.io --username=dritoferro'
         sh 'docker push dritoferro/potterdextratest:latest'
       }
     }
