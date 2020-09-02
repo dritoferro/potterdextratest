@@ -22,6 +22,12 @@ pipeline {
     }
 
     stage('Docker Push') {
+      agent {
+        node {
+          label 'push'
+        }
+
+      }
       steps {
         echo 'Pushing image to Docker Hub'
         sh 'docker push dritoferro/potterdextratest:latest'
