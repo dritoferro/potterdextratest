@@ -18,8 +18,11 @@ pipeline {
       steps {
         echo 'Building docker image'
         sh 'docker build -t "dritoferro/potterdextratest:latest" .'
-        echo 'Pushing image to Docker Hub with credentials "${env.REGCREDENTIALS}" "${REGCREDENTIALS}" ${env.REGCREDENTIALS}'
+        echo 'Trying to push image'
         sh 'docker.withRegistry(\'https://registry.hub.docker.com\', ${env.registryCredentials}){docker push dritoferro/potterdextratest:latest}'
+        sh '''echo "${env.REGCREDENTIALS}" 
+echo "${REGCREDENTIALS}"
+echo ${env.REGCREDENTIALS}'''
       }
     }
 
