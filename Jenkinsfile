@@ -22,15 +22,9 @@ pipeline {
     }
 
     stage('Docker Push') {
-      agent {
-        node {
-          label 'push'
-        }
-
-      }
       steps {
         echo 'Pushing image to Docker Hub'
-        sh 'docker push dritoferro/potterdextratest:latest'
+        sh '"docker.withRegistry(\\"https://registry.hub.docker.com/\\", \\"${env.dockerhub}\\"){docker push dritoferro/potterdextratest:latest}"'
       }
     }
 
