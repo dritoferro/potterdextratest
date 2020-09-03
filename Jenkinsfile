@@ -24,8 +24,8 @@ pipeline {
       }
       steps {
         echo 'Pushing image to Docker Hub'
-        sh '''"def customImage = docker.build(dritoferro/potterdextratest:latest)
-customImage.push()"'''
+        sh 'def customImage = docker.build(dritoferro/potterdextratest:latest)'
+        sh 'customImage.push()'
       }
     }
 
