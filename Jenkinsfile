@@ -20,7 +20,7 @@ pipeline {
 
     stage('Docker Push') {
       environment {
-        DOCKER_HUB_LOGIN = 'credentials(\'dockerhub\')'
+        DOCKER_HUB_LOGIN = 'credentials(dockerhub)'
       }
       steps {
         echo 'Loging into Docker Hub'
