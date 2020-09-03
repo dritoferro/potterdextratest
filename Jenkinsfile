@@ -22,7 +22,8 @@ pipeline {
       steps {
         echo 'Loging into Docker Hub and pushing image'
         script{
-          withRegistry('', dockerhub){
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]){
+            sh "docker login docker.io --username=$user --password=$pass"
             sh "docker push dritoferro/potterdextratest:latest"
           }
         }
