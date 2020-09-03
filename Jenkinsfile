@@ -21,13 +21,18 @@ pipeline {
     stage('Docker Push') {
       steps {
         echo 'Loging into Docker Hub and pushing image'
-        script{
+        script {
           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]){
             sh "docker login docker.io --username=$user --password=$pass"
             sh "docker push dritoferro/potterdextratest:latest"
           }
         }
+
+        echo 'Cleaning up'
+        sh 'docker image prune -f'
+        echo 'Success!!!'
       }
     }
+
   }
 }
