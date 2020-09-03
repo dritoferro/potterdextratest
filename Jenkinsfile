@@ -19,16 +19,15 @@ pipeline {
     }
 
     stage('Docker Push') {
-      environment {
-        DOCKER_HUB_LOGIN = 'credentials("dockerhub")'
-      }
       steps {
         echo 'Loging into Docker Hub'
-        sh 'docker login docker.io --username=${DOCKER_HUB_LOGIN_USR} --password=${DOCKER_HUB_LOGIN_PSW}'
         echo 'Pushing image to Docker Hub'
         sh 'docker push dritoferro/potterdextratest:latest'
+        sh '''"withCredentials([usernamePassword(credentialsId: \'dockerhub\', passwordVariable: \'pass\', usernameVariable: \'user\')]) {
+    docker login docker.io --username=$user --password=$pass
+}"'''
+        }
       }
-    }
 
+    }
   }
-}
