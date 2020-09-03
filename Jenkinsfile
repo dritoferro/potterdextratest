@@ -24,7 +24,7 @@ pipeline {
       }
       steps {
         echo 'Pushing image to Docker Hub'
-        sh 'docker push dritoferro/potterdextratest:latest'
+        sh '"withDockerRegistry([credentialsId: "dockerhub", url: "https://registry.hub.docker.com/"]){ sh \'docker push dritoferro/potterdextratest:latest\'}"'
       }
     }
 
