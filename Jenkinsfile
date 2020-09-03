@@ -23,7 +23,7 @@ pipeline {
         echo 'Loging into Docker Hub and pushing image'
         script{
           withRegistry('', dockerhub){
-            docker push dritoferro/potterdextratest:latest
+            sh "docker push dritoferro/potterdextratest:latest"
           }
         }
       }
