@@ -20,14 +20,12 @@ pipeline {
 
     stage('Docker Push') {
       steps {
-        echo 'Loging into Docker Hub'
-        sh '''"withCredentials([usernamePassword(credentialsId: \'dockerhub\', passwordVariable: \'pass\', usernameVariable: \'user\')]) {
-    sh "docker login docker.io --username=$user --password=$pass"
-}"'''
-          echo 'Pushing image to Docker Hub'
-          sh 'docker push dritoferro/potterdextratest:latest'
+        echo 'Loging into Docker Hub and pushing image'
+        script{
+          withRegistry('', dockerhub){
+            docker push dritoferro/potterdextratest:latest
+          }
         }
       }
-
     }
   }
