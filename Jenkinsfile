@@ -24,7 +24,8 @@ pipeline {
       }
       steps {
         echo 'Pushing image to Docker Hub'
-        sh '"withDockerRegistry([credentialsId: "dockerhub", url: "https://registry.hub.docker.com/"]){ sh "docker push dritoferro/potterdextratest:latest"}"'
+        sh '''"def customImage = docker.build(dritoferro/potterdextratest:latest)
+customImage.push()"'''
       }
     }
 
