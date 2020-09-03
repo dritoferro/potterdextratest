@@ -19,6 +19,9 @@ pipeline {
     }
 
     stage('Docker Push') {
+      when{
+        branch 'master'
+      }
       steps {
         echo 'Loging into Docker Hub and pushing image'
         script {
