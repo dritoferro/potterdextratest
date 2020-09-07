@@ -37,17 +37,19 @@ pipeline {
     }
 
     stage('Kubernetes') {
-        when {
-            branch 'master'
+      when {
+        branch 'master'
+      }
+      steps {
+        echo 'Updating pods on Kubernetes'
+        script {
+          withKubeConfig([credentialsId: 'mykubeconfig']){
+            sh 'kubectl apply -f kubernetes/app-deployment.yaml'
+          }
         }
-        steps {
-            echo 'Updating pods on Kubernetes'
-            script {
-                withKubeConfig(credentialsId: 'mykubeconfig'){
-                    sh "kubectl apply -f kubernetes/app-deployment.yaml"
-                }
-            }
-        }
+
+      }
     }
+
   }
 }
