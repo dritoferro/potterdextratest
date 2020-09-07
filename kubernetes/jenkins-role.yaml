@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: jenkins
+  namespace: dextratest
+rules:
+  - resources:
+      - deployments
+    verbs:
+      - create
+      - list
+      - delete
+      - update
+      - watch
+      - get
+      - patch
+    apiGroups:
+      - ""
+
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - create
+      - list
+      - delete
+      - update
+      - watch
+      - get
+      - patch
+
+  - apiGroups:
+      - ""
+    resources:
+      - pods/exec
+    verbs:
+      - create
+      - list
+      - delete
+      - update
+      - watch
+      - get
+      - patch
+
+  - apiGroups:
+      - ""
+    resources:
+      - pods/log
+    verbs:
+      - watch
+      - list
+      - get
