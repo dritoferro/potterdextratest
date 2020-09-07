@@ -43,7 +43,7 @@ pipeline {
       steps {
         echo 'Updating pods on Kubernetes'
         script {
-          withKubeConfig([credentialsId: 'mykubeconfig']){
+          withKubeConfig([credentialsId: 'kubernetes-config']){
             sh 'kubectl apply -f kubernetes/app-deployment.yaml'
           }
         }
