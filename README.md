@@ -39,6 +39,8 @@ Para facilitar em alguns passos, está na pasta do projeto o script `marauders-m
 * GitFlow
 * Sonarcloud
 * Travis
+* Jenkins
+* Kubernetes
 * GitHub
     * Issues
     * Project

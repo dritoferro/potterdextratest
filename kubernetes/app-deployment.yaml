@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pottertest-deployment
+  namespace: dextratest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pottertest
+  template:
+    metadata:
+      labels:
+        app: pottertest
+    spec:
+      containers:
+        - name: pottertest
+          image: dritoferro/potterdextratest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: jwt-secret
+                  name: app-keys
+            - name: JWT_EXPIRATION
+              valueFrom:
+                secretKeyRef:
+                  key: jwt-expiration
+                  name: app-keys
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  key: db-url
+                  name: app-keys
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: db-user
+                  name: app-keys
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: db-pass
+                  name: app-keys
+            - name: SPRING_REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: redis-host
+                  name: app-keys
+            - name: INTEGRATION_BASE-URL
+              valueFrom:
+                secretKeyRef:
+                  key: integration-url
+                  name: app-keys
+            - name: INTEGRATION_PATH-HOUSES
+              valueFrom:
+                secretKeyRef:
+                  key: integration-houses-path
+                  name: app-keys
+            - name: INTEGRATION_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: integration-key
+                  name: app-keys
