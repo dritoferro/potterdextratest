@@ -40,6 +40,7 @@ Para facilitar em alguns passos, está na pasta do projeto o script `marauders-m
 * Sonarcloud
 * Travis
 * Jenkins
+* Kubernetes
 * GitHub
     * Issues
     * Project
