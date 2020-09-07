@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgre-deployment
+  namespace: dextratest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgre
+  template:
+    metadata:
+      labels:
+        app: postgre
+    spec:
+      containers:
+        - name: postgredb
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: db-password
+                  name: postgresql-keys
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  key: db-name
+                  name: postgresql-keys
