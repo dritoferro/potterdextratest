@@ -45,9 +45,7 @@ pipeline {
         withKubeConfig(credentialsId: 'kubernetes-config', namespace: 'dextratest') {
           sh 'kubectl apply -f kubernetes/app-deployment.yaml'
         }
-
       }
     }
-
   }
 }
