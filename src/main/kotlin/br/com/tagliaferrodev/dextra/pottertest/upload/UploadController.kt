@@ -12,7 +12,8 @@ import org.springframework.web.multipart.MultipartFile
 class UploadController {
 
     @PostMapping("image")
-    fun uploadFile(@RequestParam("arquivo") file: MultipartFile): ResponseEntity<String> {
-        return ResponseEntity.ok("Recebido o arquivo ${file.originalFilename}")
+    fun uploadFile(@RequestParam("arquivo") file: MultipartFile,
+                   @RequestParam("json") texto: String): ResponseEntity<String> {
+        return ResponseEntity.ok("Recebido o arquivo ${file.originalFilename}\nJuntamente com o json: $texto")
     }
 }
