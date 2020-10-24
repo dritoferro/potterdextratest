@@ -13,10 +13,6 @@ spring:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  servlet:
-    multipart:
-      max-file-size: 5MB
-
 
 integration:
   base-url: https://www.potterapi.com/v1
