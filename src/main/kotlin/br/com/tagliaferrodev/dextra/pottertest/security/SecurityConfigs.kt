@@ -29,7 +29,7 @@ class SecurityConfigs(private val userDetailsService: UserDetailsServiceImpl,
         http.cors().and().csrf().disable()
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/login", "/users", "/uploads/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/users").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
 
