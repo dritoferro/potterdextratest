@@ -4,9 +4,8 @@ metadata:
   name: pottertest-service
   namespace: dextratest
 spec:
-  type: NodePort
   ports:
     - port: 8080
-      nodePort: 30090
+      targetPort: 8080
   selector:
     app: pottertest
