@@ -4,7 +4,7 @@ metadata:
   name: pottertest-deployment
   namespace: dextratest
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pottertest
@@ -64,3 +64,10 @@ spec:
                 secretKeyRef:
                   key: integration-key
                   name: app-keys
+          resources:
+            requests:
+              cpu: "128m"
+              memory: "128M"
+            limits:
+              cpu: "500m"
+              memory: "512M"
